@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haresh Indrajit | Deep Learning Application Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --card: #16161f;
+      --border: #2a2a3a;
+      --accent: #7c3aed;
+      --accent2: #a855f7;
+      --accent3: #06b6d4;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --tag: #1e1b4b;
+      --tag-text: #a5b4fc;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--accent2); letter-spacing: 0.5px; }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent2); }
+
+    /* SECTIONS */
+    section { padding: 100px 0 60px; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem; font-weight: 800; margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: radial-gradient(ellipse 70% 60% at 60% 40%, #1e0a3c 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 50% at 20% 80%, #0a1a2e 0%, transparent 60%),
+                  var(--bg);
+      padding-top: 60px;
+    }
+    .hero-inner { display: flex; flex-direction: column; gap: 1.2rem; }
+    .hero-eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); }
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--accent2) 60%, var(--accent3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline { font-size: 1.25rem; color: var(--muted); max-width: 520px; }
+    .hero-location { font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.5rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); transform: translateY(-1px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-1px); }
+    .social-links { display: flex; gap: 1rem; margin-top: 0.5rem; }
+    .social-links a { color: var(--muted); font-size: 1.3rem; transition: color 0.2s; text-decoration: none; }
+    .social-links a:hover { color: var(--accent2); }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-bio { color: var(--muted); font-size: 1rem; }
+    .about-bio p { margin-bottom: 1rem; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+    }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent2); line-height: 1; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+    .skill-group {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.4rem;
+    }
+    .skill-group h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.9rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: var(--tag); color: var(--tag-text);
+      border: 1px solid #312e81; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 500; padding: 0.25rem 0.65rem;
+    }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg2); }
+    .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.6rem 1.8rem; position: relative;
+      transition: border-color 0.2s;
+    }
+    .exp-card:hover { border-color: var(--accent); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
+    .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .exp-company { font-size: 0.9rem; color: var(--accent2); font-weight: 600; }
+    .exp-date { font-size: 0.78rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.25rem 0.65rem; white-space: nowrap; }
+    .exp-bullets { list-style: none; margin-top: 0.6rem; }
+    .exp-bullets li { color: var(--muted); font-size: 0.9rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-size: 0.8rem; top: 0.08rem; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;
+      transition: all 0.25s; text-decoration: none;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(124,58,237,0.15); }
+    .project-icon { font-size: 1.8rem; }
+    .project-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .project-desc { font-size: 0.88rem; color: var(--muted); flex: 1; }
+    .project-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+    .project-lang { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.35rem; }
+    .lang-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent2); display: inline-block; }
+    .project-stars { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
+
+    /* EDUCATION */
+    #education { background: var(--bg2); }
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.6rem 1.8rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;
+    }
+    .edu-degree { font-size: 1.05rem; font-weight: 700; }
+    .edu-school { font-size: 0.95rem; color: var(--accent2); font-weight: 600; margin-top: 0.2rem; }
+    .edu-details { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .edu-badge { font-size: 0.78rem; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.8rem; white-space: nowrap; height: fit-content; }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+    .contact-card {
+      background: linear-gradient(135deg, #1a0a3c 0%, #0a1a2e 100%);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 3.5rem 2rem; max-width: 600px; margin: 0 auto;
+    }
+    .contact-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.8rem; }
+    .contact-card p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent2); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 1.5rem; text-align: center; font-size: 0.8rem; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+      .hero-name { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">HI</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Portfolio</span>
+      <h1 class="hero-name">Haresh Indrajit</h1>
+      <p class="hero-tagline">Deep Learning Application Developer building intelligent systems at the intersection of vision, NLP, and cloud infrastructure.</p>
+      <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Seattle, Washington</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Get in Touch</a>
+      </div>
+      <div class="social-links">
+        <a href="https://github.com/Haresh-16" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/Haresh_Indrajit" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:haresh@uw.edu" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Building with Intelligence</h2>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>I'm a Deep Learning Application Developer with extensive experience designing and deploying production ML systems across computer vision, NLP, and multi-modal AI domains. Currently based in Seattle, WA, I've driven impactful results at companies like Wells Fargo, Teradata, and SAP.</p>
+        <p>My work spans the full ML lifecycle — from data pipelines and model architecture to cloud deployment, monitoring, and A/B testing. I'm passionate about building systems that are not just accurate, but reliable and scalable in production environments.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Years of Experience</div></div>
+        <div class="stat-card"><div class="stat-num">40+</div><div class="stat-label">GitHub Repositories</div></div>
+        <div class="stat-card"><div class="stat-num">3x</div><div class="stat-label">Faster Inference Achieved</div></div>
+        <div class="stat-card"><div class="stat-num">98%</div><div class="stat-label">Classification Accuracy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical Skills</p>
+    <h2 class="section-title">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Bash</span>
+          <span class="tag">YAML</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>ML / Deep Learning</h4>
+        <div class="skill-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Keras</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Computer Vision</h4>
+        <div class="skill-tags">
+          <span class="tag">OpenCV</span>
+          <span class="tag">YOLO</span>
+          <span class="tag">SSD</span>
+          <span class="tag">ResNet</span>
+          <span class="tag">ViT</span>
+          <span class="tag">CLIP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>LLMs / NLP</h4>
+        <div class="skill-tags">
+          <span class="tag">GPT-4</span>
+          <span class="tag">LLaMA</span>
+          <span class="tag">BERT</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Vector DBs</span>
+          <span class="tag">NLTK</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>MLOps / Cloud</h4>
+        <div class="skill-tags">
+          <span class="tag">AWS SageMaker</span>
+          <span class="tag">Azure ML</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">MLflow</span>
+          <span class="tag">Airflow</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data & Tools</h4>
+        <div class="skill-tags">
+          <span class="tag">Spark</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Snowflake</span>
+          <span class="tag">Git</span>
+          <span class="tag">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="timeline">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Deep Learning Application Developer</div>
+            <div class="exp-company">Wells Fargo</div>
+          </div>
+          <span class="exp-date">Jun 2023 – Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Architected and deployed a multi-modal fraud detection system combining transaction tabular data with document image analysis using Vision Transformers (ViT) and BERT, reducing false positives by 27%.</li>
+          <li>Built an end-to-end LLM-powered RAG pipeline using LangChain and Pinecone to automate compliance document Q&A, cutting analyst research time by 40%.</li>
+          <li>Containerized and orchestrated 12 ML microservices using Docker and Kubernetes on AWS EKS, improving deployment reliability and reducing model serving latency by 35%.</li>
+          <li>Designed Airflow DAGs for automated nightly model retraining on SageMaker, maintaining model freshness across 5 production ML pipelines.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Machine Learning Engineer</div>
+            <div class="exp-company">Teradata</div>
+          </div>
+          <span class="exp-date">Aug 2021 – May 2023</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed and maintained NLP models for automated SQL query generation from natural language using fine-tuned T5 and BERT models, improving query accuracy by 22%.</li>
+          <li>Optimized model inference with TensorRT and ONNX, achieving 3× speedup on GPU serving infrastructure and enabling real-time responses under 100ms.</li>
+          <li>Built a data quality monitoring pipeline using PySpark and Snowflake to detect data drift across 50+ production features, reducing model degradation incidents by 45%.</li>
+          <li>Collaborated with product teams to integrate ML predictions into Teradata Vantage analytics platform via REST APIs built with FastAPI.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">AI / ML Developer Intern</div>
+            <div class="exp-company">SAP</div>
+          </div>
+          <span class="exp-date">Jan 2021 – Jul 2021</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built a computer vision pipeline for automated invoice document processing using EfficientNet and Tesseract OCR, achieving 94% extraction accuracy.</li>
+          <li>Implemented an anomaly detection model on SAP HANA time-series transactional data using Isolation Forest and LSTM autoencoders, flagging 98% of anomalous records.</li>
+          <li>Prototyped an MLflow experiment tracking system for model versioning across 8 R&D ML projects, reducing reproducibility issues by 60%.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Featured Work</h2>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://github.com/Haresh-16/Document-classification" target="_blank">
+        <div class="project-icon">🪪</div>
+        <div class="project-name">Document Classification</div>
+        <div class="project-desc">Classifies Aadhaar, Passport, PAN card, and Driving License documents using deep convolutional neural networks. Achieved 98%+ accuracy across all four identity document classes.</div>
+        <div class="project-meta">
+          <span class="project-lang"><span class="lang-dot"></span> Python</span>
+          <span class="project-stars"><i class="fas fa-star"></i> 4</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/Haresh-16/Public-Grievance-Image-Classification" target="_blank">
+        <div class="project-icon">🏙️</div>
+        <div class="project-name">Public Grievance Classification</div>
+        <div class="project-desc">Image classification system for civic issues — overflowing garbage, open manholes, and patchy roads — to assist automated municipal complaint routing. Built using transfer learning on ResNet.</div>
+        <div class="project-meta">
+          <span class="project-lang"><span class="lang-dot"></span> Python</span>
+          <span class="project-stars"><i class="fas fa-star"></i> 2</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/Haresh-16/Public-Grievance-Detection" target="_blank">
+        <div class="project-icon">🔍</div>
+        <div class="project-name">Public Grievance Detection</div>
+        <div class="project-desc">Object detection system for 6 classes of civic grievances using Single Shot Detection (SSD). Enables real-time detection and localization of urban issues for smart city applications.</div>
+        <div class="project-meta">
+          <span class="project-lang"><span class="lang-dot"></span> Python</span>
+          <span class="project-stars"><i class="fas fa-star"></i> 1</span>
+        </div>
+      </a>
+
+    </div>
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://github.com/Haresh-16" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> View All Repos on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Academic Background</h2>
+    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Master of Science — Data Science</div>
+          <div class="edu-school">University of Washington, Seattle</div>
+          <div class="edu-details">Focus: Machine Learning, Computer Vision, NLP, Statistical Modeling</div>
+        </div>
+        <span class="edu-badge">Seattle, WA</span>
+      </div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Bachelor of Engineering — Computer Science</div>
+          <div class="edu-school">Undergraduate Institution</div>
+          <div class="edu-details">Foundation in algorithms, data structures, and software engineering</div>
+        </div>
+        <span class="edu-badge">India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title" style="text-align:center;">Let's Connect</h2>
+    <div class="contact-card">
+      <h3>Open to Opportunities</h3>
+      <p>I'm actively exploring full-time roles in ML Engineering, Deep Learning, and AI Product development. Drop me a message!</p>
+      <div class="contact-links">
+        <a href="mailto:haresh@uw.edu" class="contact-link"><i class="fas fa-envelope"></i> haresh@uw.edu</a>
+        <a href="https://github.com/Haresh-16" target="_blank" class="contact-link"><i class="fab fa-github"></i> github.com/Haresh-16</a>
+        <a href="https://twitter.com/Haresh_Indrajit" target="_blank" class="contact-link"><i class="fab fa-twitter"></i> @Haresh_Indrajit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built by Haresh Indrajit &mdash; 2026</p>
+</footer>
+
+</body>
+</html>
