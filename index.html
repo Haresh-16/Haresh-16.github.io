@@ -920,115 +920,159 @@
   </footer>
 
   <script>
-    const FORBES_RSS = "https://www.forbes.com/technology/feed2/";
-    const RSS_PROXY = "https://api.rss2json.com/v1/api.json";
-    const ARTICLE_COUNT = 9;
+  const FORBES_RSS = "https://www.forbes.com/technology/feed2/";
+  const RSS_PROXY = "https://api.rss2json.com/v1/api.json";
+  const ARTICLE_COUNT = 9;
 
-    function escapeHtml(value = "") {
-      const element = document.createElement("div");
-      element.textContent = value;
-      return element.innerHTML;
+  function escapeHtml(value = "") {
+    const element = document.createElement("div");
+    element.textContent = value;
+    return element.innerHTML;
+  }
+
+  function stripHtml(value = "") {
+    const element = document.createElement("div");
+    element.innerHTML = value;
+    return element.textContent || element.innerText || "";
+  }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+      return "";
     }
 
-    function stripHtml(value = "") {
-      const element = document.createElement("div");
-      element.innerHTML = value;
-      return element.textContent || element.innerText || "";
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  }
+
+  function categoryFor(article) {
+    if (article.categories && article.categories.length > 0) {
+      return article.categories[0];
     }
 
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      if (Number.isNaN(date.getTime())) return "";
+    const title = (article.title || "").toLowerCase();
 
-      return date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-      });
+    if (
+      title.includes("artificial intelligence") ||
+      title.includes(" ai ")
+    ) {
+      return "AI";
     }
 
-    function categoryFor(article) {
-      if (article.categories && article.categories.length > 0) {
-        return article.categories[0];
-      }
-
-      const title = (article.title || "").toLowerCase();
-
-      if (title.includes("artificial intelligence") || title.includes(" ai ")) return "AI";
-      if (title.includes("startup")) return "Startups";
-      if (title.includes("cyber") || title.includes("security")) return "Security";
-
-      return "Technology";
+    if (title.includes("startup")) {
+      return "Startups";
     }
 
-    function showLoading() {
-      document.getElementById("news-grid").innerHTML = Array(6)
-        .fill('<div class="news-skeleton"></div>')
-        .join("");
+    if (title.includes("cyber") || title.includes("security")) {
+      return "Security";
     }
 
-    function showError() {
-      document.getElementById("news-grid").innerHTML = `
-        <div class="news-error">
-          <p><i class="fas fa-satellite-dish"></i></p>
-          <p>Forbes news could not be loaded right now.</p>
-          <div class="refresh-wrap">
-            <button class="refresh-button" onclick="loadForbesNews()">
-              <i class="fas fa-rotate-right"></i> Try Again
-            </button>
-          </div>
+    return "Technology";
+  }
+
+  function showLoading() {
+    document.getElementById("news-grid").innerHTML = Array(6)
+      .fill('<div class="news-skeleton"></div>')
+      .join("");
+  }
+
+  function showError(message) {
+    document.getElementById("news-grid").innerHTML = `
+      <div class="news-error">
+        <p><i class="fas fa-satellite-dish"></i></p>
+        <p>Forbes news could not be loaded right now.</p>
+        <p style="font-size: 0.78rem; margin-top: 0.4rem;">
+          ${escapeHtml(message)}
+        </p>
+        <div class="refresh-wrap">
+          <button class="refresh-button" onclick="loadForbesNews()">
+            <i class="fas fa-rotate-right"></i> Try Again
+          </button>
         </div>
-      `;
-    }
+      </div>
+    `;
+  }
 
-    async function loadForbesNews() {
-      showLoading();
+  async function loadForbesNews() {
+    showLoading();
 
-      try {
-        const url = `${RSS_PROXY}?rss_url=${encodeURIComponent(FORBES_RSS)}&count=${ARTICLE_COUNT}`;
-        const response = await fetch(url);
+    try {
+      // Do not add &count=9 here: RSS2JSON requires an API key for count.
+      const url = `${RSS_PROXY}?rss_url=${encodeURIComponent(FORBES_RSS)}`;
 
-        if (!response.ok) throw new Error("Feed request failed");
+      const response = await fetch(url);
 
-        const data = await response.json();
-
-        if (!data.items || data.items.length === 0) {
-          throw new Error("No articles found");
-        }
-
-        document.getElementById("news-grid").innerHTML = data.items
-          .slice(0, ARTICLE_COUNT)
-          .map((article) => {
-            const title = escapeHtml(article.title || "Untitled Forbes article");
-            const description = escapeHtml(
-              stripHtml(article.description || article.content || "").slice(0, 220)
-            );
-            const category = escapeHtml(categoryFor(article));
-            const date = formatDate(article.pubDate);
-            const link = article.link || "https://www.forbes.com/technology/";
-
-            return `
-              <a class="news-card" href="${link}" target="_blank" rel="noopener noreferrer">
-                <div class="news-meta">
-                  <span class="news-category">${category}</span>
-                  <span class="news-date">${date}</span>
-                </div>
-                <div class="news-title">${title}</div>
-                ${description ? `<div class="news-description">${description}</div>` : ""}
-                <div class="news-read-more">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Read on Forbes
-                </div>
-              </a>
-            `;
-          })
-          .join("");
-      } catch (error) {
-        console.error("Forbes RSS feed error:", error);
-        showError();
+      if (!response.ok) {
+        throw new Error(`Feed service returned HTTP ${response.status}`);
       }
-    }
 
-    document.addEventListener("DOMContentLoaded", loadForbesNews);
-  </script>
+      const data = await response.json();
+
+      if (data.status !== "ok") {
+        throw new Error(data.message || "The RSS service rejected the request.");
+      }
+
+      if (!data.items || data.items.length === 0) {
+        throw new Error("The Forbes feed returned no articles.");
+      }
+
+      document.getElementById("news-grid").innerHTML = data.items
+        .slice(0, ARTICLE_COUNT)
+        .map((article) => {
+          const title = escapeHtml(
+            article.title || "Untitled Forbes article"
+          );
+
+          const description = escapeHtml(
+            stripHtml(article.description || article.content || "")
+              .slice(0, 220)
+          );
+
+          const category = escapeHtml(categoryFor(article));
+          const date = formatDate(article.pubDate);
+          const link = article.link ||
+            "https://www.forbes.com/technology/";
+
+          return `
+            <a
+              class="news-card"
+              href="${link}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="news-meta">
+                <span class="news-category">${category}</span>
+                <span class="news-date">${date}</span>
+              </div>
+
+              <div class="news-title">${title}</div>
+
+              ${
+                description
+                  ? `<div class="news-description">${description}</div>`
+                  : ""
+              }
+
+              <div class="news-read-more">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+                Read on Forbes
+              </div>
+            </a>
+          `;
+        })
+        .join("");
+    } catch (error) {
+      console.error("Forbes RSS feed error:", error);
+      showError(error.message || "Unknown RSS loading error.");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadForbesNews);
+</script>
 </body>
 </html>
