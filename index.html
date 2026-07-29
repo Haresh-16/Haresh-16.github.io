@@ -3,244 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Haresh Indrajit — Software Engineer focused on AI/ML, distributed systems, cloud infrastructure, and high-performance applications." />
   <title>Haresh Indrajit | Software Engineer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     :root {
       --bg: #0a0a0f;
-      --bg2: #111118;
+      --bg-alt: #111118;
       --card: #16161f;
       --border: #2a2a3a;
       --accent: #7c3aed;
-      --accent2: #a855f7;
-      --accent3: #06b6d4;
+      --accent-light: #a855f7;
+      --cyan: #06b6d4;
       --text: #e2e8f0;
       --muted: #94a3b8;
       --tag: #1e1b4b;
-      --tag-text: #a5b4fc;
+      --tag-text: #c7d2fe;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
+      font-family: "Inter", sans-serif;
       line-height: 1.7;
     }
 
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,10,15,0.85);
+      align-items: center;
       backdrop-filter: blur(12px);
+      background: rgba(10, 10, 15, 0.88);
       border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 2rem; height: 60px;
+      display: flex;
+      height: 64px;
+      justify-content: space-between;
+      left: 0;
+      padding: 0 2rem;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 100;
     }
 
     .nav-logo {
-      font-weight: 700;
+      color: var(--accent-light);
       font-size: 1.1rem;
-      color: var(--accent2);
-      letter-spacing: 0.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-decoration: none;
     }
 
-    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
     .nav-links a {
       color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.2s ease;
     }
-    .nav-links a:hover { color: var(--accent2); }
 
-    section { padding: 100px 0 60px; }
-    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    .nav-links a:hover { color: var(--accent-light); }
+
+    section { padding: 100px 0 70px; }
+    .container {
+      margin: 0 auto;
+      max-width: 1080px;
+      padding: 0 1.5rem;
+    }
 
     .section-label {
+      color: var(--accent-light);
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2.5px;
+      margin-bottom: 0.45rem;
       text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.5rem;
     }
 
     .section-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 2.5rem;
-      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+      background: linear-gradient(135deg, #ffffff, var(--muted));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-size: clamp(1.9rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 2.5rem;
     }
 
     #hero {
-      min-height: 100vh;
-      display: flex;
       align-items: center;
       background:
-        radial-gradient(ellipse 70% 60% at 60% 40%, #1e0a3c 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, #0a1a2e 0%, transparent 60%),
+        radial-gradient(ellipse 65% 60% at 65% 35%, #1e0a3c 0%, transparent 70%),
+        radial-gradient(ellipse 55% 50% at 15% 85%, #0a1a2e 0%, transparent 65%),
         var(--bg);
-      padding-top: 60px;
+      display: flex;
+      min-height: 100vh;
+      padding-top: 64px;
     }
 
-    .hero-inner { display: flex; flex-direction: column; gap: 1.2rem; }
-    .hero-eyebrow {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .eyebrow {
+      color: var(--accent-light);
+      font-size: 0.82rem;
+      font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--accent2);
     }
 
     .hero-name {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #fff 0%, var(--accent2) 60%, var(--accent3) 100%);
+      background: linear-gradient(135deg, #fff 0%, var(--accent-light) 58%, var(--cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
     }
 
     .hero-tagline {
-      font-size: 1.25rem;
       color: var(--muted);
-      max-width: 680px;
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      max-width: 760px;
     }
 
     .hero-location {
-      font-size: 0.9rem;
       color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      font-size: 0.9rem;
     }
 
-    .hero-cta {
+    .hero-buttons,
+    .social-links,
+    .contact-links {
       display: flex;
-      gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 0.5rem;
+      gap: 0.85rem;
     }
 
     .btn {
-      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.5rem;
       border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      display: inline-flex;
+      font-size: 0.88rem;
+      font-weight: 700;
+      gap: 0.5rem;
+      padding: 0.7rem 1.25rem;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #fff;
       border: 1px solid var(--accent);
+      color: #fff;
     }
 
     .btn-primary:hover {
-      background: var(--accent2);
-      border-color: var(--accent2);
-      transform: translateY(-1px);
+      background: var(--accent-light);
+      transform: translateY(-2px);
     }
 
     .btn-outline {
+      background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
-      background: transparent;
     }
 
     .btn-outline:hover {
-      border-color: var(--accent2);
-      color: var(--accent2);
-      transform: translateY(-1px);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.5rem;
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+      transform: translateY(-2px);
     }
 
     .social-links a {
       color: var(--muted);
-      font-size: 1.3rem;
-      transition: color 0.2s;
+      font-size: 1.25rem;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-    .social-links a:hover { color: var(--accent2); }
+    .social-links a:hover { color: var(--accent-light); }
 
-    #about { background: var(--bg2); }
+    #about,
+    #experience,
+    #education { background: var(--bg-alt); }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 3rem;
       align-items: start;
-    }
-
-    .about-bio { color: var(--muted); font-size: 1rem; }
-    .about-bio p { margin-bottom: 1rem; }
-
-    .about-stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 3rem;
+      grid-template-columns: 1.25fr 1fr;
     }
 
-    .stat-card {
+    .about-copy { color: var(--muted); }
+    .about-copy p + p { margin-top: 1rem; }
+
+    .stats-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card,
+    .skill-group,
+    .experience-card,
+    .project-card,
+    .education-card,
+    .news-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem 1.4rem;
+      border-radius: 14px;
     }
 
-    .stat-num {
-      font-size: 2rem;
+    .stat-card { padding: 1.15rem; }
+    .stat-number {
+      color: var(--accent-light);
+      font-size: 1.9rem;
       font-weight: 800;
-      color: var(--accent2);
-      line-height: 1;
+      line-height: 1.1;
     }
 
     .stat-label {
-      font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 0.3rem;
+      font-size: 0.77rem;
+      margin-top: 0.35rem;
     }
 
     .skills-grid {
       display: grid;
+      gap: 1.1rem;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
     }
 
-    .skill-group {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.4rem;
-    }
-
-    .skill-group h4 {
-      font-size: 0.8rem;
-      font-weight: 700;
+    .skill-group { padding: 1.35rem; }
+    .skill-group h3 {
+      color: var(--accent-light);
+      font-size: 0.78rem;
       letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent2);
       margin-bottom: 0.9rem;
+      text-transform: uppercase;
     }
 
-    .skill-tags {
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
@@ -248,281 +265,366 @@
 
     .tag {
       background: var(--tag);
-      color: var(--tag-text);
       border: 1px solid #312e81;
       border-radius: 6px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.25rem 0.65rem;
+      color: var(--tag-text);
+      font-size: 0.75rem;
+      padding: 0.22rem 0.6rem;
     }
 
-    #experience { background: var(--bg2); }
-
-    .timeline {
+    .experience-list {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
-    .exp-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.6rem 1.8rem;
-      transition: border-color 0.2s;
-    }
+    .experience-card { padding: 1.5rem; }
 
-    .exp-card:hover { border-color: var(--accent); }
-
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
+    .experience-header,
+    .education-card,
+    .news-heading {
       align-items: flex-start;
+      display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.8rem;
+      gap: 0.75rem;
+      justify-content: space-between;
     }
 
-    .exp-role {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .role {
       color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 800;
     }
 
-    .exp-company {
+    .company {
+      color: var(--accent-light);
       font-size: 0.9rem;
-      color: var(--accent2);
       font-weight: 600;
     }
 
-    .exp-date {
-      font-size: 0.78rem;
-      color: var(--muted);
+    .date-badge {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 6px;
+      color: var(--muted);
+      font-size: 0.75rem;
       padding: 0.25rem 0.65rem;
       white-space: nowrap;
     }
 
-    .exp-bullets {
+    .experience-card ul {
       list-style: none;
-      margin-top: 0.6rem;
+      margin-top: 0.9rem;
     }
 
-    .exp-bullets li {
+    .experience-card li {
       color: var(--muted);
-      font-size: 0.9rem;
-      padding-left: 1.2rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.1rem;
       position: relative;
-      margin-bottom: 0.45rem;
     }
 
-    .exp-bullets li::before {
-      content: '→';
-      position: absolute;
+    .experience-card li::before {
+      color: var(--accent-light);
+      content: "→";
       left: 0;
-      color: var(--accent2);
-      font-size: 0.8rem;
-      top: 0.08rem;
+      position: absolute;
     }
 
-    .projects-grid {
+    .projects-grid,
+    .news-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.4rem;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
     }
 
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
+    .project-card,
+    .news-card {
+      color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      transition: all 0.25s;
+      gap: 0.75rem;
+      padding: 1.4rem;
       text-decoration: none;
+      transition: 0.22s ease;
     }
 
     .project-card:hover {
       border-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(124,58,237,0.15);
+    }
+
+    .news-card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 8px 30px rgba(6, 182, 212, 0.12);
+      transform: translateY(-3px);
     }
 
     .project-icon {
-      font-size: 1.8rem;
-      color: var(--accent3);
+      color: var(--cyan);
+      font-size: 1.7rem;
     }
 
-    .project-name {
-      font-size: 1rem;
-      font-weight: 700;
+    .project-name,
+    .news-title {
       color: var(--text);
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.45;
     }
 
-    .project-desc {
-      font-size: 0.88rem;
+    .project-desc,
+    .news-description {
       color: var(--muted);
-      flex: 1;
+      font-size: 0.85rem;
     }
 
-    .project-meta {
-      display: flex;
-      justify-content: space-between;
+    .project-footer,
+    .news-meta {
       align-items: center;
+      color: var(--muted);
+      display: flex;
+      font-size: 0.75rem;
+      gap: 0.4rem;
+      justify-content: space-between;
       margin-top: auto;
-      gap: 0.5rem;
-      flex-wrap: wrap;
     }
 
-    .project-lang,
-    .project-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .lang-dot {
-      width: 10px;
-      height: 10px;
+    .language-dot {
+      background: var(--accent-light);
       border-radius: 50%;
-      background: var(--accent2);
       display: inline-block;
+      height: 9px;
+      width: 9px;
     }
 
-    #education { background: var(--bg2); }
-
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.6rem 1.8rem;
+    .education-list {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 1.1rem;
     }
 
-    .edu-degree {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .education-card { padding: 1.5rem; }
+
+    .degree {
+      color: var(--text);
+      font-size: 1.02rem;
+      font-weight: 800;
     }
 
-    .edu-school {
-      font-size: 0.95rem;
-      color: var(--accent2);
+    .school {
+      color: var(--accent-light);
+      font-size: 0.9rem;
       font-weight: 600;
       margin-top: 0.2rem;
     }
 
-    .edu-details {
-      font-size: 0.85rem;
+    .details {
       color: var(--muted);
-      margin-top: 0.3rem;
+      font-size: 0.84rem;
+      margin-top: 0.25rem;
     }
 
-    .edu-badge {
-      font-size: 0.78rem;
-      color: var(--muted);
-      background: var(--bg);
+    .news-heading { margin-bottom: 2rem; }
+    .news-heading .section-title { margin-bottom: 0; }
+
+    .source-badge {
+      align-items: center;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.35rem 0.8rem;
-      white-space: nowrap;
-      height: fit-content;
+      border-radius: 8px;
+      color: var(--muted);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 700;
+      gap: 0.45rem;
+      padding: 0.4rem 0.8rem;
+      text-decoration: none;
+    }
+
+    .source-badge:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+    }
+
+    .source-badge i { color: var(--cyan); }
+
+    .news-category {
+      background: rgba(6, 182, 212, 0.09);
+      border: 1px solid rgba(6, 182, 212, 0.22);
+      border-radius: 5px;
+      color: var(--cyan);
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 0.16rem 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .news-date {
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .news-description {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+
+    .news-read-more {
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: auto;
+    }
+
+    .news-skeleton {
+      animation: shimmer 1.4s infinite;
+      background: linear-gradient(90deg, var(--card) 25%, #222232 50%, var(--card) 75%);
+      background-size: 200% 100%;
+      border-radius: 14px;
+      height: 190px;
+    }
+
+    @keyframes shimmer {
+      from { background-position: 200% 0; }
+      to { background-position: -200% 0; }
+    }
+
+    .news-error {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .refresh-wrap { margin-top: 1.5rem; text-align: center; }
+
+    .refresh-button {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.55rem 1rem;
+    }
+
+    .refresh-button:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
     }
 
     #contact { text-align: center; }
 
     .contact-card {
-      background: linear-gradient(135deg, #1a0a3c 0%, #0a1a2e 100%);
+      background: linear-gradient(135deg, #1a0a3c, #0a1a2e);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 3.5rem 2rem;
-      max-width: 720px;
       margin: 0 auto;
+      max-width: 760px;
+      padding: 3rem 1.5rem;
     }
 
     .contact-card h3 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 800;
-      margin-bottom: 0.8rem;
     }
 
     .contact-card p {
       color: var(--muted);
-      margin-bottom: 2rem;
+      margin: 0.7rem auto 1.8rem;
+      max-width: 620px;
     }
 
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
+    .contact-links { justify-content: center; }
 
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .contact-links a {
       color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 600;
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
     }
 
-    .contact-link:hover { color: var(--accent2); }
+    .contact-links a:hover { color: var(--accent-light); }
 
     footer {
       border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.78rem;
       padding: 1.5rem;
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 800px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 0.75rem; }
+      .nav-links a { font-size: 0.7rem; }
       .about-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 1rem; }
-      .hero-name { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 500px) {
+      .nav-links a:nth-child(n+5) { display: none; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
 
+<body>
   <nav>
-    <span class="nav-logo">HI</span>
+    <a class="nav-logo" href="#hero">HI</a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
+      <a href="#news">News</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <section id="hero">
     <div class="container">
-      <div class="hero-inner">
-        <span class="hero-eyebrow">Portfolio</span>
+      <div class="hero-content">
+        <span class="eyebrow">Software Engineer</span>
         <h1 class="hero-name">Haresh Indrajit</h1>
-        <p class="hero-tagline">Software Engineer focused on C++, backend systems, multithreaded pipelines, cloud infrastructure, and applied AI products.</p>
-        <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Seattle, Washington</p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
+        <p class="hero-tagline">
+          Building AI-powered products, distributed systems, high-performance
+          document pipelines, and cloud-native developer experiences.
+        </p>
+        <p class="hero-location">
+          <i class="fas fa-location-dot"></i> Seattle, Washington
+        </p>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects">
+            <i class="fas fa-rocket"></i> View Projects
+          </a>
+          <a class="btn btn-outline" href="#contact">
+            <i class="fas fa-envelope"></i> Contact Me
+          </a>
         </div>
+
         <div class="social-links">
-          <a href="https://github.com/Haresh-16" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/haresh-indrajit" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:hareshindrajit16@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/Haresh-16" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/haresh-indrajit" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="mailto:hareshindrajit16@gmail.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -532,27 +634,38 @@
     <div class="container">
       <p class="section-label">About Me</p>
       <h2 class="section-title">Systems + AI</h2>
+
       <div class="about-grid">
-        <div class="about-bio">
-          <p>I’m a Software Engineer with experience across backend platforms, distributed services, and AI-powered applications. My recent work spans multithreaded C++ document pipelines, gRPC-based service boundaries, cloud-native ML inference, and LLM-assisted product workflows.</p>
-          <p>I enjoy building production systems that are fast, observable, and maintainable — whether that means improving throughput on Linux servers, designing modular OOP-based components, or deploying AI services with Docker, ECS, and Kubernetes.</p>
+        <div class="about-copy">
+          <p>
+            I am a software engineer with experience building backend platforms,
+            distributed services, and AI-powered applications. My work spans C++
+            document processing, GPU-accelerated OCR workflows, cloud-native ML
+            inference, and LLM-assisted product systems.
+          </p>
+          <p>
+            I enjoy building production systems that are fast, observable, and
+            maintainable—from improving Linux service throughput to deploying
+            containerized AI systems with Docker, AWS, and Kubernetes.
+          </p>
         </div>
-        <div class="about-stats">
+
+        <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-num">41</div>
+            <div class="stat-number">41</div>
             <div class="stat-label">Public GitHub Repositories</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">3x</div>
-            <div class="stat-label">Throughput Improvement</div>
+            <div class="stat-number">3x</div>
+            <div class="stat-label">Pipeline Throughput Improvement</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">87%</div>
+            <div class="stat-number">87%</div>
             <div class="stat-label">Faster Training-to-Deploy</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">70%</div>
-            <div class="stat-label">Lower Imagery API Latency</div>
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Lower API Latency</div>
           </div>
         </div>
       </div>
@@ -563,105 +676,59 @@
     <div class="container">
       <p class="section-label">Technical Skills</p>
       <h2 class="section-title">Core Stack</h2>
+
       <div class="skills-grid">
         <div class="skill-group">
-          <h4>Languages</h4>
-          <div class="skill-tags">
-            <span class="tag">C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
+          <h3>Languages</h3>
+          <div class="tag-list">
+            <span class="tag">Python</span><span class="tag">C++</span>
+            <span class="tag">TypeScript</span><span class="tag">Java</span>
+            <span class="tag">SQL</span><span class="tag">CUDA C++</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h4>OOD / OOP</h4>
-          <div class="skill-tags">
-            <span class="tag">Inheritance</span>
-            <span class="tag">Polymorphism</span>
-            <span class="tag">RAII</span>
-            <span class="tag">Factory</span>
-            <span class="tag">Observer</span>
-            <span class="tag">Strategy</span>
-            <span class="tag">Singleton</span>
+          <h3>AI / ML</h3>
+          <div class="tag-list">
+            <span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
+            <span class="tag">LangChain</span><span class="tag">OpenCV</span>
+            <span class="tag">MediaPipe</span><span class="tag">MCP</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h4>Concurrency</h4>
-          <div class="skill-tags">
-            <span class="tag">Thread Pools</span>
-            <span class="tag">POSIX pthreads</span>
-            <span class="tag">Producer-Consumer</span>
-            <span class="tag">std::thread</span>
-            <span class="tag">std::mutex</span>
+          <h3>Backend & APIs</h3>
+          <div class="tag-list">
+            <span class="tag">FastAPI</span><span class="tag">Node.js</span>
+            <span class="tag">GraphQL</span><span class="tag">gRPC</span>
+            <span class="tag">REST</span><span class="tag">WebSockets</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h4>Frameworks & APIs</h4>
-          <div class="skill-tags">
-            <span class="tag">FastAPI</span>
-            <span class="tag">Django</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">REST</span>
-            <span class="tag">GraphQL</span>
-            <span class="tag">gRPC</span>
+          <h3>Cloud & DevOps</h3>
+          <div class="tag-list">
+            <span class="tag">AWS</span><span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span><span class="tag">Terraform</span>
+            <span class="tag">GitHub Actions</span><span class="tag">ECS</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h4>OS & Tooling</h4>
-          <div class="skill-tags">
-            <span class="tag">Linux</span>
-            <span class="tag">Ubuntu</span>
-            <span class="tag">CentOS</span>
-            <span class="tag">GDB</span>
-            <span class="tag">Valgrind</span>
-            <span class="tag">CMake</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Kubernetes</span>
-            <span class="tag">GitHub Actions</span>
+          <h3>Systems</h3>
+          <div class="tag-list">
+            <span class="tag">Linux</span><span class="tag">Concurrency</span>
+            <span class="tag">Thread Pools</span><span class="tag">MPI</span>
+            <span class="tag">RDMA</span><span class="tag">GDB</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h4>Data & Storage</h4>
-          <div class="skill-tags">
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Redis</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">Elasticsearch</span>
-            <span class="tag">AWS S3</span>
-            <span class="tag">AWS SQS</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>AI / ML & Agents</h4>
-          <div class="skill-tags">
-            <span class="tag">PyTorch</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">Ollama</span>
-            <span class="tag">MCP</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">MediaPipe</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Cloud & Observability</h4>
-          <div class="skill-tags">
-            <span class="tag">AWS</span>
-            <span class="tag">ECS Fargate</span>
-            <span class="tag">Elastic Beanstalk</span>
-            <span class="tag">API Gateway</span>
-            <span class="tag">New Relic</span>
-            <span class="tag">Splunk</span>
-            <span class="tag">Terraform</span>
+          <h3>Data</h3>
+          <div class="tag-list">
+            <span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+            <span class="tag">MongoDB</span><span class="tag">Elasticsearch</span>
+            <span class="tag">S3</span><span class="tag">SQS</span>
           </div>
         </div>
       </div>
@@ -671,59 +738,54 @@
   <section id="experience">
     <div class="container">
       <p class="section-label">Experience</p>
-      <h2 class="section-title">Where I’ve Worked</h2>
-      <div class="timeline">
+      <h2 class="section-title">Where I've Worked</h2>
 
-        <div class="exp-card">
-          <div class="exp-header">
+      <div class="experience-list">
+        <article class="experience-card">
+          <div class="experience-header">
             <div>
-              <div class="exp-role">Software Engineer Intern</div>
-              <div class="exp-company">JumpStartCSR — Seattle, Washington</div>
+              <div class="role">Software Engineer Intern</div>
+              <div class="company">JumpStartCSR · Seattle, WA</div>
             </div>
-            <span class="exp-date">Jun 2024 – Sept 2024</span>
+            <span class="date-badge">Jun 2024 – Sep 2024</span>
           </div>
-          <ul class="exp-bullets">
-            <li>Built an intelligent annotation platform integrating LangChain and a Mistral LLM for ecological Q&A, using OOP principles to decouple retrieval, inference, and storage layers and reducing researcher support requests by 45%.</li>
-            <li>Designed a real-time imagery API using Node.js and WebSockets, deployed on AWS Elastic Beanstalk with API Gateway, reducing tile fetch latency by 70%.</li>
-            <li>Introduced a GraphQL gateway across backend services to reduce over-fetching and simplify client integrations, improving API ergonomics and developer velocity.</li>
+          <ul>
+            <li>Built an intelligent document annotation platform with LangChain and Mistral LLM workflows.</li>
+            <li>Designed a Node.js and WebSocket imagery API on AWS, reducing tile-fetch latency by 70%.</li>
+            <li>Introduced GraphQL service boundaries to improve client integration and reduce over-fetching.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="exp-card">
-          <div class="exp-header">
+        <article class="experience-card">
+          <div class="experience-header">
             <div>
-              <div class="exp-role">Software Engineer</div>
-              <div class="exp-company">ToCode — Chennai, India</div>
+              <div class="role">Software Engineer</div>
+              <div class="company">ToCode · Chennai, India</div>
             </div>
-            <span class="exp-date">Aug 2021 – Aug 2023</span>
+            <span class="date-badge">Aug 2021 – Aug 2023</span>
           </div>
-          <ul class="exp-bullets">
-            <li>Designed and implemented a multithreaded C++ document-processing pipeline using std::thread, std::mutex, and a thread-pool producer-consumer pattern, improving throughput by 3x on 8-core Linux servers.</li>
-            <li>Built a C++ and OpenCV image preprocessing pipeline for scanned documents, including binarization, deskew, and noise filtering, improving OCR extraction F1 by 12% and reducing per-page latency by 35%.</li>
-            <li>Implemented gRPC-based communication between performance-critical C++ preprocessing components and Python ML inference services, reducing serialization overhead and cutting p95 cross-service latency by 29%.</li>
-            <li>Introduced AWS SQS to decouple document ingestion from downstream extraction workers, improving resilience under burst traffic and reducing failed job retries by 34%.</li>
-            <li>Deployed ML-based text extraction services using Python, FastAPI, Docker, and PyTorch on AWS ECS with Fargate, reducing average inference latency to under 250ms.</li>
-            <li>Optimized relational data models and PostgreSQL stored procedures for high-volume document indexing and search, reducing query time by 40%.</li>
-            <li>Developed unit and integration test suites using Google Test and PyTest, achieving over 90% coverage and reducing production defects by 35%.</li>
-            <li>Implemented end-to-end observability with New Relic and Splunk, cutting MTTR by 48%, improving p95 latency by 32%, and reducing noisy alerts by 55%.</li>
+          <ul>
+            <li>Built multithreaded C++ document-processing pipelines with 3x throughput improvement.</li>
+            <li>Developed OpenCV preprocessing for scanned documents, improving OCR quality and page latency.</li>
+            <li>Connected C++ preprocessing and Python inference services through gRPC.</li>
+            <li>Deployed Dockerized FastAPI and PyTorch inference workloads on AWS ECS Fargate.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="exp-card">
-          <div class="exp-header">
+        <article class="experience-card">
+          <div class="experience-header">
             <div>
-              <div class="exp-role">Software Engineer Intern</div>
-              <div class="exp-company">HippoVideo — Chennai, India</div>
+              <div class="role">Software Engineer Intern</div>
+              <div class="company">HippoVideo · Chennai, India</div>
             </div>
-            <span class="exp-date">Aug 2020 – Aug 2021</span>
+            <span class="date-badge">Aug 2020 – Aug 2021</span>
           </div>
-          <ul class="exp-bullets">
-            <li>Quantized the ESRGAN model using TensorFlow post-training quantization, reducing model size by 55% while maintaining PSNR 29.9 for efficient deployment.</li>
-            <li>Architected the CI/CD pipeline for an AI-based video upscaling service on Linux using GitHub Actions, SageMaker, and Kubernetes (EKS), cutting training-to-deployment time by 87%.</li>
-            <li>Provisioned and managed cloud infrastructure with Terraform in Linux-based environments, ensuring reproducible builds and reducing manual configuration errors by 60%.</li>
+          <ul>
+            <li>Quantized an ESRGAN model to reduce model size by 55% while maintaining visual quality.</li>
+            <li>Built CI/CD for an AI video-upscaling platform using GitHub Actions, SageMaker, and EKS.</li>
+            <li>Provisioned reproducible cloud infrastructure using Terraform.</li>
           </ul>
-        </div>
-
+        </article>
       </div>
     </div>
   </section>
@@ -732,54 +794,74 @@
     <div class="container">
       <p class="section-label">Projects</p>
       <h2 class="section-title">Featured Work</h2>
-      <div class="projects-grid">
 
-        <a class="project-card" href="#" target="_blank">
+      <div class="projects-grid">
+        <a class="project-card" href="#" aria-label="FramePilot project">
           <div class="project-icon"><i class="fas fa-video"></i></div>
           <div class="project-name">FramePilot</div>
-          <div class="project-desc">Built a video editing pipeline using FastAPI, Celery, Redis, and SQLite with an LLM orchestrator that generates guardrailed EditSpec JSON plans. Added auto-framing for vertical video with OpenCV CSRT tracking, optional MediaPipe head tracking, and a swappable strategy-pattern design for vision modules.</div>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot"></span> Python</span>
-            <span class="project-note"><i class="fas fa-wand-magic-sparkles"></i> Agentic Editing</span>
+          <p class="project-desc">
+            Agentic video-editing pipeline using FastAPI, Celery, Redis, OpenCV,
+            and LLM-generated guardrailed editing plans.
+          </p>
+          <div class="project-footer">
+            <span><span class="language-dot"></span> Python</span>
+            <span>Agentic Editing</span>
           </div>
         </a>
 
-        <a class="project-card" href="https://github.com/Haresh-16/Document-classification" target="_blank">
+        <a class="project-card" href="https://github.com/Haresh-16/Document-classification" target="_blank" rel="noopener noreferrer">
           <div class="project-icon"><i class="fa-regular fa-file-lines"></i></div>
           <div class="project-name">Document Classification</div>
-          <div class="project-desc">Identity document classifier covering Aadhaar, Passport, PAN card, and Driving License categories, built as a computer vision project in Python.</div>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot"></span> Python</span>
-            <span class="project-note"><i class="fab fa-github"></i> GitHub</span>
+          <p class="project-desc">
+            Computer-vision system to classify identity documents including
+            Aadhaar, passport, PAN card, and driving license categories.
+          </p>
+          <div class="project-footer">
+            <span><span class="language-dot"></span> Python</span>
+            <span><i class="fab fa-github"></i> GitHub</span>
           </div>
         </a>
 
-        <a class="project-card" href="https://github.com/Haresh-16/Public-Grievance-Image-Classification" target="_blank">
+        <a class="project-card" href="https://github.com/Haresh-16/Public-Grievance-Image-Classification" target="_blank" rel="noopener noreferrer">
           <div class="project-icon"><i class="fas fa-city"></i></div>
           <div class="project-name">Public Grievance Classification</div>
-          <div class="project-desc">Image classification system for civic issues such as overflowing garbage, open manholes, and patchy roads, designed for automated complaint routing.</div>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot"></span> Python</span>
-            <span class="project-note"><i class="fab fa-github"></i> GitHub</span>
+          <p class="project-desc">
+            Civic-issue image classification for garbage, road damage, and
+            related complaint-routing workflows.
+          </p>
+          <div class="project-footer">
+            <span><span class="language-dot"></span> Python</span>
+            <span><i class="fab fa-github"></i> GitHub</span>
           </div>
         </a>
+      </div>
+    </div>
+  </section>
 
-        <a class="project-card" href="https://github.com/Haresh-16/Public-Grievance-Detection" target="_blank">
-          <div class="project-icon"><i class="fas fa-magnifying-glass"></i></div>
-          <div class="project-name">Public Grievance Detection</div>
-          <div class="project-desc">Object detection project for multiple public grievance classes using SSD, built for smart city and urban issue detection use cases.</div>
-          <div class="project-meta">
-            <span class="project-lang"><span class="lang-dot"></span> Python</span>
-            <span class="project-note"><i class="fab fa-github"></i> GitHub</span>
-          </div>
+  <section id="news">
+    <div class="container">
+      <p class="section-label">Latest News</p>
+
+      <div class="news-heading">
+        <h2 class="section-title">Forbes Technology Feed</h2>
+        <a class="source-badge" href="https://www.forbes.com/technology/" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-rss"></i> forbes.com
         </a>
-
       </div>
 
-      <div style="text-align:center; margin-top: 2rem;">
-        <a href="https://github.com/Haresh-16" target="_blank" class="btn btn-outline">
-          <i class="fab fa-github"></i> View GitHub Profile
-        </a>
+      <div class="news-grid" id="news-grid">
+        <div class="news-skeleton"></div>
+        <div class="news-skeleton"></div>
+        <div class="news-skeleton"></div>
+        <div class="news-skeleton"></div>
+        <div class="news-skeleton"></div>
+        <div class="news-skeleton"></div>
+      </div>
+
+      <div class="refresh-wrap">
+        <button class="refresh-button" onclick="loadForbesNews()">
+          <i class="fas fa-rotate-right"></i> Refresh Feed
+        </button>
       </div>
     </div>
   </section>
@@ -789,23 +871,23 @@
       <p class="section-label">Education</p>
       <h2 class="section-title">Academic Background</h2>
 
-      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
-        <div class="edu-card">
+      <div class="education-list">
+        <div class="education-card">
           <div>
-            <div class="edu-degree">Master of Science — Electrical Engineering</div>
-            <div class="edu-school">University of Washington — Seattle, WA</div>
-            <div class="edu-details">Graduated Jun 2025</div>
+            <div class="degree">Master of Science — Electrical Engineering</div>
+            <div class="school">University of Washington · Seattle, WA</div>
+            <div class="details">Graduated June 2025</div>
           </div>
-          <span class="edu-badge">Seattle, WA</span>
+          <span class="date-badge">Seattle, WA</span>
         </div>
 
-        <div class="edu-card">
+        <div class="education-card">
           <div>
-            <div class="edu-degree">Bachelor of Engineering</div>
-            <div class="edu-school">Anna University — Chennai, India</div>
-            <div class="edu-details">Graduated Aug 2021</div>
+            <div class="degree">Bachelor of Engineering</div>
+            <div class="school">Anna University · Chennai, India</div>
+            <div class="details">Graduated August 2021</div>
           </div>
-          <span class="edu-badge">Chennai, India</span>
+          <span class="date-badge">Chennai, India</span>
         </div>
       </div>
     </div>
@@ -814,23 +896,139 @@
   <section id="contact">
     <div class="container">
       <p class="section-label">Contact</p>
-      <h2 class="section-title" style="text-align:center;">Let’s Connect</h2>
+      <h2 class="section-title">Let's Connect</h2>
+
       <div class="contact-card">
         <h3>Open to Engineering Roles</h3>
-        <p>I’m interested in software engineering opportunities across backend infrastructure, distributed systems, ML platforms, and AI product engineering.</p>
+        <p>
+          Interested in software engineering opportunities across AI platforms,
+          backend infrastructure, distributed systems, cloud engineering, and
+          applied ML products.
+        </p>
+
         <div class="contact-links">
-          <a href="mailto:hareshindrajit16@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> hareshindrajit16@gmail.com</a>
-          <a href="tel:+12062290930" class="contact-link"><i class="fas fa-phone"></i> +1 206 229 0930</a>
-          <a href="https://www.linkedin.com/in/haresh-indrajit" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> linkedin.com/in/haresh-indrajit</a>
-          <a href="https://github.com/Haresh-16" target="_blank" class="contact-link"><i class="fab fa-github"></i> github.com/Haresh-16</a>
+          <a href="mailto:hareshindrajit16@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://www.linkedin.com/in/haresh-indrajit" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/Haresh-16" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>Designed & built by Haresh Indrajit — 2026</p>
+    Designed &amp; built by Haresh Indrajit · 2026
   </footer>
 
+  <script>
+    const FORBES_RSS = "https://www.forbes.com/technology/feed2/";
+    const RSS_PROXY = "https://api.rss2json.com/v1/api.json";
+    const ARTICLE_COUNT = 9;
+
+    function escapeHtml(value = "") {
+      const element = document.createElement("div");
+      element.textContent = value;
+      return element.innerHTML;
+    }
+
+    function stripHtml(value = "") {
+      const element = document.createElement("div");
+      element.innerHTML = value;
+      return element.textContent || element.innerText || "";
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      if (Number.isNaN(date.getTime())) return "";
+
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+
+    function categoryFor(article) {
+      if (article.categories && article.categories.length > 0) {
+        return article.categories[0];
+      }
+
+      const title = (article.title || "").toLowerCase();
+
+      if (title.includes("artificial intelligence") || title.includes(" ai ")) return "AI";
+      if (title.includes("startup")) return "Startups";
+      if (title.includes("cyber") || title.includes("security")) return "Security";
+
+      return "Technology";
+    }
+
+    function showLoading() {
+      document.getElementById("news-grid").innerHTML = Array(6)
+        .fill('<div class="news-skeleton"></div>')
+        .join("");
+    }
+
+    function showError() {
+      document.getElementById("news-grid").innerHTML = `
+        <div class="news-error">
+          <p><i class="fas fa-satellite-dish"></i></p>
+          <p>Forbes news could not be loaded right now.</p>
+          <div class="refresh-wrap">
+            <button class="refresh-button" onclick="loadForbesNews()">
+              <i class="fas fa-rotate-right"></i> Try Again
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadForbesNews() {
+      showLoading();
+
+      try {
+        const url = `${RSS_PROXY}?rss_url=${encodeURIComponent(FORBES_RSS)}&count=${ARTICLE_COUNT}`;
+        const response = await fetch(url);
+
+        if (!response.ok) throw new Error("Feed request failed");
+
+        const data = await response.json();
+
+        if (!data.items || data.items.length === 0) {
+          throw new Error("No articles found");
+        }
+
+        document.getElementById("news-grid").innerHTML = data.items
+          .slice(0, ARTICLE_COUNT)
+          .map((article) => {
+            const title = escapeHtml(article.title || "Untitled Forbes article");
+            const description = escapeHtml(
+              stripHtml(article.description || article.content || "").slice(0, 220)
+            );
+            const category = escapeHtml(categoryFor(article));
+            const date = formatDate(article.pubDate);
+            const link = article.link || "https://www.forbes.com/technology/";
+
+            return `
+              <a class="news-card" href="${link}" target="_blank" rel="noopener noreferrer">
+                <div class="news-meta">
+                  <span class="news-category">${category}</span>
+                  <span class="news-date">${date}</span>
+                </div>
+                <div class="news-title">${title}</div>
+                ${description ? `<div class="news-description">${description}</div>` : ""}
+                <div class="news-read-more">
+                  <i class="fas fa-arrow-up-right-from-square"></i> Read on Forbes
+                </div>
+              </a>
+            `;
+          })
+          .join("");
+      } catch (error) {
+        console.error("Forbes RSS feed error:", error);
+        showError();
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadForbesNews);
+  </script>
 </body>
 </html>
