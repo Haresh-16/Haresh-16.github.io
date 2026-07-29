@@ -919,21 +919,17 @@
     Designed &amp; built by Haresh Indrajit · 2026
   </footer>
 
-  <script>
-  const FORBES_RSS = "https://www.forbes.com/technology/feed2/";
-  const RSS_PROXY = "https://api.rss2json.com/v1/api.json";
+ <script>
+  const FORBES_NEWS_RSS =
+    "https://news.google.com/rss/search?q=site%3Aforbes.com%20(technology%20OR%20AI%20OR%20startups)&hl=en-US&gl=US&ceid=US%3Aen";
+
+  const CORS_PROXY = "https://api.allorigins.win/raw?url=";
   const ARTICLE_COUNT = 9;
 
   function escapeHtml(value = "") {
     const element = document.createElement("div");
     element.textContent = value;
     return element.innerHTML;
-  }
-
-  function stripHtml(value = "") {
-    const element = document.createElement("div");
-    element.innerHTML = value;
-    return element.textContent || element.innerText || "";
   }
 
   function formatDate(dateString) {
@@ -950,31 +946,6 @@
     });
   }
 
-  function categoryFor(article) {
-    if (article.categories && article.categories.length > 0) {
-      return article.categories[0];
-    }
-
-    const title = (article.title || "").toLowerCase();
-
-    if (
-      title.includes("artificial intelligence") ||
-      title.includes(" ai ")
-    ) {
-      return "AI";
-    }
-
-    if (title.includes("startup")) {
-      return "Startups";
-    }
-
-    if (title.includes("cyber") || title.includes("security")) {
-      return "Security";
-    }
-
-    return "Technology";
-  }
-
   function showLoading() {
     document.getElementById("news-grid").innerHTML = Array(6)
       .fill('<div class="news-skeleton"></div>')
@@ -986,7 +957,7 @@
       <div class="news-error">
         <p><i class="fas fa-satellite-dish"></i></p>
         <p>Forbes news could not be loaded right now.</p>
-        <p style="font-size: 0.78rem; margin-top: 0.4rem;">
+        <p style="font-size: 0.78rem; margin-top: 0.45rem;">
           ${escapeHtml(message)}
         </p>
         <div class="refresh-wrap">
@@ -998,77 +969,115 @@
     `;
   }
 
+  function getCategory(title = "") {
+    const normalized = title.toLowerCase();
+
+    if (
+      normalized.includes("artificial intelligence") ||
+      normalized.includes(" ai ")
+    ) {
+      return "AI";
+    }
+
+    if (normalized.includes("startup")) {
+      return "Startups";
+    }
+
+    if (
+      normalized.includes("cybersecurity") ||
+      normalized.includes("security")
+    ) {
+      return "Security";
+    }
+
+    if (
+      normalized.includes("cloud") ||
+      normalized.includes("software")
+    ) {
+      return "Software";
+    }
+
+    return "Technology";
+  }
+
   async function loadForbesNews() {
     showLoading();
 
     try {
-      // Do not add &count=9 here: RSS2JSON requires an API key for count.
-      const url = `${RSS_PROXY}?rss_url=${encodeURIComponent(FORBES_RSS)}`;
-
-      const response = await fetch(url);
+      const response = await fetch(
+        `${CORS_PROXY}${encodeURIComponent(FORBES_NEWS_RSS)}`
+      );
 
       if (!response.ok) {
-        throw new Error(`Feed service returned HTTP ${response.status}`);
+        throw new Error(`News service returned HTTP ${response.status}.`);
       }
 
-      const data = await response.json();
+      const xmlText = await response.text();
+      const xml = new DOMParser().parseFromString(xmlText, "text/xml");
 
-      if (data.status !== "ok") {
-        throw new Error(data.message || "The RSS service rejected the request.");
+      const parserError = xml.querySelector("parsererror");
+
+      if (parserError) {
+        throw new Error("The news feed returned invalid XML.");
       }
 
-      if (!data.items || data.items.length === 0) {
-        throw new Error("The Forbes feed returned no articles.");
+      const items = [...xml.querySelectorAll("item")];
+
+      if (items.length === 0) {
+        throw new Error("No recent Forbes technology stories were found.");
       }
 
-      document.getElementById("news-grid").innerHTML = data.items
+      const cards = items
         .slice(0, ARTICLE_COUNT)
-        .map((article) => {
-          const title = escapeHtml(
-            article.title || "Untitled Forbes article"
-          );
+        .map((item) => {
+          const rawTitle =
+            item.querySelector("title")?.textContent ||
+            "Untitled Forbes article";
 
-          const description = escapeHtml(
-            stripHtml(article.description || article.content || "")
-              .slice(0, 220)
-          );
+          const title = rawTitle.replace(/\s*-\s*Forbes\s*$/i, "");
 
-          const category = escapeHtml(categoryFor(article));
-          const date = formatDate(article.pubDate);
-          const link = article.link ||
-            "https://www.forbes.com/technology/";
+          const link =
+            item.querySelector("link")?.textContent ||
+            "https://www.forbes.com/";
+
+          const publishedDate =
+            item.querySelector("pubDate")?.textContent || "";
 
           return `
             <a
               class="news-card"
-              href="${link}"
+              href="${escapeHtml(link)}"
               target="_blank"
               rel="noopener noreferrer"
             >
               <div class="news-meta">
-                <span class="news-category">${category}</span>
-                <span class="news-date">${date}</span>
+                <span class="news-category">
+                  ${escapeHtml(getCategory(title))}
+                </span>
+                <span class="news-date">
+                  ${escapeHtml(formatDate(publishedDate))}
+                </span>
               </div>
 
-              <div class="news-title">${title}</div>
-
-              ${
-                description
-                  ? `<div class="news-description">${description}</div>`
-                  : ""
-              }
+              <div class="news-title">${escapeHtml(title)}</div>
 
               <div class="news-read-more">
                 <i class="fas fa-arrow-up-right-from-square"></i>
-                Read on Forbes
+                Open Forbes Story
               </div>
             </a>
           `;
         })
         .join("");
+
+      document.getElementById("news-grid").innerHTML = cards;
     } catch (error) {
-      console.error("Forbes RSS feed error:", error);
-      showError(error.message || "Unknown RSS loading error.");
+      console.error("Forbes news feed error:", error);
+
+      showError(
+        error.message ||
+        "The news provider is temporarily unavailable. Try again shortly."
+      );
     }
   }
 
